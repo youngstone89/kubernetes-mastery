@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: color-app-service
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 8080 # assume equal value to port if not provided
+    nodePort: 30008 # 30000~32767, randomly selected if not provided
+  selector:
+    name: simple-color-web
