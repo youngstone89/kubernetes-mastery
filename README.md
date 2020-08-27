@@ -68,6 +68,7 @@ app-secret --from-literal=DB_HOST=mysql \
 
 
 ## Taints
-kubectl taint nodes node1 key=value:NoSchedule
+`kubectl taint nodes node1 key=value:NoSchedule`
+`kubectl taint nodes ip-192-168-240-76.ec2.internal lifecycle=od:NoSchedule`
 
 

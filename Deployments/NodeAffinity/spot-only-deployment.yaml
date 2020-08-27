@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  spot-only-deploy
+  namespace: demo
+  labels:
+    app:  spot-only-deploy-app
+spec:
+  selector:
+    matchLabels:
+      app: spot-only-deploy-app
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app:  spot-only-deploy-app
+    spec:
+      # initContainers:
+        # Init containers are exactly like regular containers, except:
+          # - Init containers always run to completion.
+          # - Each init container must complete successfully before the next one starts.
+      containers:
+      - name:  spot-only-app-container
+        image:  nginx:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort:  80
+      restartPolicy: Always
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: spotinst.io/node-lifecycle
+                  operator: NotIn
+                  values: ["od"]
+      tolerations:
+        - key: lifecycle
+          operator: Equal
+          value: od
+          effect: NoSchedule
