@@ -1,6 +1,9 @@
 # Cheatsheet
 ## List all objects created in cluster.
 `kubectl get all`
+## Detele all objects created in cluster. 
+`kubectl delete all --all --all-namespaces`
+
 
 ## Create a Pod Object using Standard Input 
 `cat <<EOF | kubectl apply -f -
@@ -64,5 +67,7 @@ app-secret --from-literal=DB_HOST=mysql \
 
 
 
+## Taints
+kubectl taint nodes node1 key=value:NoSchedule
 
 
