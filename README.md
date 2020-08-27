@@ -50,6 +50,17 @@ app-config --from-literal=APP_COLOR=blue \
 ` kubectl create configmap \
 app-config --from-file=app_config.properties`
 
+## Secrets
+### Imperative  Create
+` kubectl create secret generic \
+app-secret --from-literal=DB_HOST=mysql \
+           --from-literal=DB_USER=root  \
+           --from-literal=DB_PASSWD=passrd `
+
+
+
+
+
 
 
 
