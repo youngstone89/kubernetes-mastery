@@ -72,3 +72,12 @@ app-secret --from-literal=DB_HOST=mysql \
 `kubectl taint nodes ip-192-168-240-76.ec2.internal lifecycle=od:NoSchedule`
 
 
+## ClusterRoles 
+`kubectl create clusterrole foo --verb=get,list,watch --resource=rs.extensions --dry-run=client -o yaml > cr.yaml`
+
+## ClusterRoleBinding
+`kubectl create clusterrolebinding foo --clusterrole=foo --user=bar --dry-run=client -o yaml > crb.yaml`
+
+
+## api-groups
+`kubectl api-resources`
