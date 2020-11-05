@@ -35,5 +35,5 @@ spec:
             cpu: 100m
             memory: 100Mi
       nodeSelector:
-        group: ondemand
+        env: demo
         

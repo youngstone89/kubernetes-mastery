@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  another-elastigroup-deploy
+  name:  az-a-deploy
   namespace: demo
   labels:
-    app:  another-elastigroup-deploy
+    app:  az-a-deploy
 spec:
   selector:
     matchLabels:
-      app: another-elastigroup-deploy
-  replicas: 1
+      app: az-a-deploy
+  replicas: 2
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,14 +18,14 @@ spec:
   template:
     metadata:
       labels:
-        app:  another-elastigroup-deploy
+        app:  az-a-deploy
     spec:
       # initContainers:
         # Init containers are exactly like regular containers, except:
           # - Init containers always run to completion.
           # - Each init container must complete successfully before the next one starts.
       containers:
-      - name:  another-elastigroup-deploy-app-container
+      - name:  az-a-deploy-app-container
         image:  nginx:latest
         resources:
           requests:
@@ -35,5 +35,5 @@ spec:
             cpu: 100m
             memory: 100Mi
       nodeSelector:
-        group: ondemand
+        az: a
         
