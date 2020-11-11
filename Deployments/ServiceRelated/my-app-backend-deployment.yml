@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: myapp
+    type: backend
+  name: my-app-backend
+  namespace: common
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp
+      type: backend
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: myapp
+        type: backend
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+status: {}
