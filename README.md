@@ -81,3 +81,7 @@ app-secret --from-literal=DB_HOST=mysql \
 
 ## api-groups
 `kubectl api-resources`
+
+
+## Service Ingress
+`kubectl expose deployment -n ingress-space ingress-controller --type=NodePort --port=80 --name=ingress --dry-run -o yaml >ingress.yaml`
