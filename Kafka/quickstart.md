@@ -18,5 +18,3 @@ kubectl -n kafka run kafka-consumer -ti --image=quay.io/strimzi/kafka:0.21.1-kaf
 kubectl create deployment springboot-kafka --image youngstone89/springboot.base.app:1.0.kafka  -n kafka
 
 kubectl expose deployment springboot-kafka --type NodePort --port 8888 --target-port 8080 -n kafka
-
-kubectl create secret docker-registry regcred --docker-server="https://index.docker.io/v2/" --docker-username="youngstone89" --docker-password="wldndkQk2021**" --docker-email="youngstone89@icloud.com"
