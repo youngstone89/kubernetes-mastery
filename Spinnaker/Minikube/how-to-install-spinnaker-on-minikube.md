@@ -1,6 +1,6 @@
 from https://costimuraru.wordpress.com/2018/07/06/deploying-spinnaker-on-minikube-kubernetes-using-hal/
 
-minikube start --cpus 6 --memory 10240
+minikube start --cpus 6 --memory 10240 --driver=hyperkit
 
 export MINIO_ACCESS_KEY=minio
 export MINIO_SECRET_KEY=miniostorage

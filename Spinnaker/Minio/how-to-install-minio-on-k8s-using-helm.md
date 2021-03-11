@@ -1,6 +1,11 @@
 #  https://github.com/minio/charts#configuration
 ## Configure MiniO Helm repo
 helm repo add minio https://helm.min.io/
+
+
+## create minio namespace
+kubectl create namespace minio
+
 ## Install with default config
 helm install --namespace minio --generate-name minio/minio
 

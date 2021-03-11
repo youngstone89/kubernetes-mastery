@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: springboot-kafka
+  name: springboot-kafka
+  namespace: kafka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-kafka
+  template:
+    metadata:
+      labels:
+        app: springboot-kafka
+    spec:
+      containers:
+        - image: springboot.base.app:1.0.4.kafka
+          imagePullPolicy: IfNotPresent
+          name: springboot-base-app
