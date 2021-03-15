@@ -1,0 +1,25 @@
+$ kubectl create namespace jenkins
+
+
+Install Jenkins with Helm v3
+
+
+$ helm repo add jenkinsci https://charts.jenkins.io
+$ helm repo update
+$ helm search repo jenkinsci
+
+$ kubectl apply -f jenkins-volume.yaml
+$ kubectl apply -f jenkins-sa.yaml
+$ chart=jenkinsci/jenkins
+$ helm install jenkins -n jenkins -f jenkins-values.yaml $chart
+helm install jenkins -n jenkins -f HelmChart/values.yaml $chart
+
+$ kubectl exec --namespace jenkins -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo
+$ export NODE_PORT=$(kubectl get --namespace jenkins -o jsonpath="{.spec.ports[0].nodePort}" services jenkins)
+$ export NODE_IP=$(kubectl get nodes --namespace jenkins -o jsonpath="{.items[0].status.addresses[0].address}")
+$ echo http://$NODE_IP:$NODE_PORT/login
+
+
+
+c2Yk8TeyXsmTITsOULEF1D
+http://192.168.64.7:32193/login

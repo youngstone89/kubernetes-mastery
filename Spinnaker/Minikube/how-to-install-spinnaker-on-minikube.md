@@ -21,6 +21,11 @@ hal config provider docker-registry account add dockerhub --address index.docker
 
 hal deploy apply
 
+## PortFowarding 
+
+hal config security ui edit --override-base-url http://localhost:9001
+hal config security api edit --override-base-url http://localhost:8084
+
 alias spin_gate='kubectl port-forward -n spinnaker $(kubectl get pods -n spinnaker -o=custom-columns=NAME:.metadata.name | grep gate) 8084:8084'
 
 alias spin_deck='kubectl port-forward -n spinnaker $(kubectl get pods -n spinnaker -o=custom-columns=NAME:.metadata.name | grep deck) 9001:9000'
@@ -29,11 +34,16 @@ alias spinnaker='spin_gate &; spin_deck &'
 
 spinnaker
 
+## Expose Service on NodePort
+kubectl edit service spin-deck --namespace spinnaker
+kubectl edit service spin-gate --namespace spinnaker
+hal config security ui edit --override-base-url http://192.168.64.7:32251
+hal config security api edit --override-base-url http://192.168.64.7:32477
 
-hal config security ui edit --override-base-url http://localhost:9001
-hal config security api edit --override-base-url http://localhost:8084
+hal deploy apply 
+hal deploy connect &
 
-
+## CloudDriver Needs Service Account
 
 # Add DockerHub Repository
 ADDRESS=index.docker.io
