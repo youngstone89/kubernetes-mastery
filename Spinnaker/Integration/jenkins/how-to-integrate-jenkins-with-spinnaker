@@ -10,4 +10,5 @@ https://docs.armory.io/docs/armory-admin/jenkins-connect/
 hal config ci jenkins master add my-jenkins-master \
     --address http://192.168.64.7:32193 \
     --username spinnaker \
-    --password # You will be prompted for your Jenkins API token interactively
+    --password # You will be prompted for your Jenkins API token interactivelys
+    
