@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+  labels:
+    app: chart101-application
+data:
+  greeting: "Hello World"
+  drink: {{ .Values.favoriteDrink }}
