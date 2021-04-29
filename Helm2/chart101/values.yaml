@@ -1,7 +1,18 @@
 # Default values for chart101.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-favoriteDrink: coffee
+tlsSecrets:
+  name: "secret name"
+  certificate: "certificate"
+  key: "key"
+favorite:
+  drink: coffee
+  food: pizza
+pizzaToppings:
+  - mushrooms
+  - cheese
+  - peppers
+  - onions
 replicaCount: 1
 
 image:

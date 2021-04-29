@@ -1,9 +1,34 @@
+{{- define "mychart.app" -}}
+app_name: {{ .Chart.Name }}
+app_version: "{{ .Chart.Version }}+{{ .Release.Time.Seconds }}"
+{{- end -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-configmap
   labels:
-    app: chart101-application
+    {{- include "mychart.app" . | nindent 4 }}
 data:
-  greeting: "Hello World"
-  drink: {{ .Values.favoriteDrink }}
+  myvalue: "Hello World"
+  {{- $relname := .Release.Name -}}
+  {{- with .Values.favorite }}
+  drink: {{ .drink | default "tea" | quote }}
+  food: {{ .food | upper | quote }}
+  release: {{ $relname }}
+  {{- end }}
+  {{- range $key, $val := .Values.favorite }}
+  {{ $key }}: {{ $val | quote }}
+  {{- end}}
+  toppings: |-
+    {{- range .Values.pizzaToppings }}
+    - {{ . | title | quote }}
+    {{- end }}
+  sizes: |-
+    {{- range list "small" "medium" "large" }}
+    - {{ . }}
+    {{- end }}
+  toppings: |-
+    {{- range $index, $topping := .Values.pizzaToppings }}
+      {{ $index }}: {{ $topping }}
+    {{- end }}
+    
