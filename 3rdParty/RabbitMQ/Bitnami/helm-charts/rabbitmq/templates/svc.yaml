@@ -17,7 +17,6 @@ metadata:
     {{- end -}}
   {{- end }}
 spec:
-  ipFamilyPolicy: PreferDualStack
   type: {{ .Values.service.type }}
   {{- if eq .Values.service.type "LoadBalancer" }}
   {{- if not (empty .Values.service.loadBalancerIP) }}

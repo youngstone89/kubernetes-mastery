@@ -1,0 +1,1 @@
+helm pull bitnami/rabbitmq

@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  rabbitmq:
+    image: psxaasstackacr.azurecr.io/mob-ps/dev/rabbitmq-ipv6:latest
+    ports:
+      - '4369:4369'
+      - '5551:5551'
+      - '5552:5552'
+      - '5672:5672'
+      - '25672:25672'
+      - '15672:15672'
+    environment:
+      - RABBITMQ_SECURE_PASSWORD=yes
+      - RABBITMQ_USERNAME=user
+      - RABBITMQ_PASSWORD=bitnami
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-kernel\ inetrc\ '/tmp/ipv6-cfg/erl_inetrc'\ -proto_dist\ inet6_tcp
+      - RABBITMQ_CTL_ERL_ARGS=-proto_dist\ inet6_tcp
+    volumes:
+      - 'rabbitmq_data:/bitnami/rabbitmq/mnesia'
+volumes:
+  rabbitmq_data:
+    driver: local

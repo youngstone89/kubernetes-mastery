@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rabbitmq-ipv6
+  namespace: analytics-ys
+spec:
+  containers:
+    - name: rabbitmq
+      image: 'docker.io/bitnami/rabbitmq:3.9.9-debian-10-r0'
+      ports:
+        - name: amqp
+          containerPort: 5672
+          protocol: TCP
+        - name: dist
+          containerPort: 25672
+          protocol: TCP
+        - name: stats
+          containerPort: 15672
+          protocol: TCP
+        - name: epmd
+          containerPort: 4369
+          protocol: TCP
+      env:
+        - name: K8S_ADDRESS_TYPE
+          value: hostname
+        - name: RABBITMQ_FORCE_BOOT
+          value: 'no'
+        - name: RABBITMQ_LDAP_ENABLE
+          value: 'no'
+        - name: RABBITMQ_LOGS
+          value: '-'
+        - name: RABBITMQ_ULIMIT_NOFILES
+          value: '65536'
+        - name: RABBITMQ_USE_LONGNAME
+          value: 'true'
+        - name: RABBITMQ_LOAD_DEFINITIONS
+          value: 'no'
+        - name: RABBITMQ_SECURE_PASSWORD
+          value: 'yes'
+        - name: RABBITMQ_USERNAME
+          value: guest
+        - name: RABBITMQ_PASSWORD
+          value: guest
+        - name: RABBITMQ_PLUGINS
+          value: >-
+            rabbitmq_management
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      imagePullPolicy: IfNotPresent
+  restartPolicy: Always
+  terminationGracePeriodSeconds: 120
+  securityContext:
+    runAsUser: 1001
+    fsGroup: 1001
+  hostname: rabbitmq-0
+  subdomain: rabbitmq-headless
+
+  schedulerName: default-scheduler
+  tolerations:
+    - key: node.kubernetes.io/not-ready
+      operator: Exists
+      effect: NoExecute
+      tolerationSeconds: 300
+    - key: node.kubernetes.io/unreachable
+      operator: Exists
+      effect: NoExecute
+      tolerationSeconds: 300
