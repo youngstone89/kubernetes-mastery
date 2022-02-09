@@ -1,0 +1,5 @@
+extraEnvVars:
+  - name: RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS
+    value: "-kernel inetrc '/tmp/ipv6-cfg/erl_inetrc' -proto_dist inet6_tcp"
+  - name: RABBITMQ_CTL_ERL_ARGS
+    value: "-proto_dist inet6_tcp"
