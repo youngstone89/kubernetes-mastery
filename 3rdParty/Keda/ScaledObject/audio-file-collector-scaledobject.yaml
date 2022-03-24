@@ -15,4 +15,4 @@ spec:
         serverAddress: http://prometheus-kube-prometheus-prometheus.nuance-monitor:9090
         metricName: http_requests_per_second
         query: sum(rate(afc_http_response_total{service="audio-file-collector"}[1m]))
-        threshold: "4"
+        threshold: "2"
