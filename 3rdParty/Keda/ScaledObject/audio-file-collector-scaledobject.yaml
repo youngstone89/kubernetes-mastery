@@ -1,0 +1,18 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: audio-file-collector
+spec:
+  scaleTargetRef:
+    name: audio-file-collector # must be in the same namespace as the ScaledObject
+  minReplicaCount: 1
+  maxReplicaCount: 100
+  pollingInterval: 3 # Optional. Default: 30 seconds
+  cooldownPeriod: 5 # Optional. Default: 300 seconds
+  triggers:
+    - type: prometheus
+      metadata:
+        serverAddress: http://prometheus-kube-prometheus-prometheus.nuance-monitor:9090
+        metricName: http_requests_per_second
+        query: sum(rate(afc_http_response_total{service="audio-file-collector"}[1m]))
+        threshold: "4"
