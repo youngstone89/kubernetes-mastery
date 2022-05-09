@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: helloworld-ingress
+  namespace: nuance-asraas
+  annotations:
+    haproxy.org/check: "true"
+    kubernetes.io/ingress.class: nuance-coretech
+spec:
+  rules:
+    - host: yeongseokkim.tk
+      http:
+        paths:
+          - pathType: Prefix
+            path: /helloworld
+            backend:
+              service:
+                name: helloworld
+                port:
+                  number: 80
