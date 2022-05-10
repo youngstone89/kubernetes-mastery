@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: echo-ingress
+    name: krypton-router-ingress
     annotations:
         haproxy.org/path-rewrite: "/"
         kubernetes.io/ingress.class: nuance-coretech
@@ -9,10 +9,10 @@ spec:
     rules:
     - http:
         paths:
-        - path: /echo
+        - path: /krypton-router
           pathType: Prefix
           backend:
             service:
-              name: echo-service
+              name: krypton-router
               port:
-                number: 8080
+                number: 8090
