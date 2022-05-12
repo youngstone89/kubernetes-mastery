@@ -3,13 +3,13 @@ kind: Ingress
 metadata:
     name: krypton-router-ingress
     annotations:
-        haproxy.org/path-rewrite: "/"
         kubernetes.io/ingress.class: nuance-coretech
+        ingress.kubernetes.io/ssl-passthrough: "true"
 spec:
     rules:
     - http:
         paths:
-        - path: /krypton-router
+        - path: /
           pathType: Prefix
           backend:
             service:
