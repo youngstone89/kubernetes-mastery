@@ -154,3 +154,7 @@ Before certificates can be issued, cert-manager requires an Issuer or ClusterIss
 ```
 kubectl apply -f cert-manager-tls-ingress.yaml --namespace nginx-ingress-test
 ```
+### Verify a certificate object has been created
+```
+$ kubectl get certificate --namespace nginx-ingress-test
+```
