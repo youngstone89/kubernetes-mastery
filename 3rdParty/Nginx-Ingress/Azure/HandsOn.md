@@ -97,4 +97,60 @@ kubectl apply -f tls-ingress.yaml --namespace nginx-ingress-test
 ### Test the ingress configuration 
 ```
 curl -v -k --resolve demo.azure.com:443:20.102.13.247 https://demo.azure.com
+curl -v -k --resolve demo.azure.com:443:20.102.13.247 https://demo.azure.com/hello-world-two
+```
+
+### Configure an FQDN for the ingress controller
+#### Method 1: Set the DNS label using the Azure CLI
+```
+# Public IP address of your ingress controller
+IP="MY_EXTERNAL_IP"
+
+# Name to associate with public IP address
+DNSNAME="demo-aks-ingress"
+
+# Get the resource-id of the public ip
+PUBLICIPID=$(az network public-ip list --query "[?ipAddress!=null]|[?contains(ipAddress, '$IP')].[id]" --output tsv)
+
+# Update public ip address with DNS name
+az network public-ip update --ids $PUBLICIPID --dns-name $DNSNAME
+
+# Display the FQDN
+az network public-ip show --ids $PUBLICIPID --query "[dnsSettings.fqdn]" --output tsv
+```
+#### Method 2: Set the DNS label using helm chart settings
+```
+DNS_LABEL="grpc-test"
+helm upgrade nginx-ingress-test ingress-nginx/ingress-nginx \
+  --namespace nginx-ingress-test \
+  --set controller.ingressClassResource.name="nginx-ingress-test" \
+  --set controller.ingressClass="nginx-ingress-test" \
+  --set controller.service.annotations."service\.beta\.kubernetes\.io/azure-dns-label-name"=$DNS_LABEL
+
+```
+```
+grpc-test.eastus.cloudapp.azure.com.
+```
+
+### Install cert-manager
+```
+# Label the ingress-basic namespace to disable resource validation
+kubectl label namespace nginx-ingress-test cert-manager.io/disable-validation=true
+
+# Add the Jetstack Helm repository
+helm repo add jetstack https://charts.jetstack.io
+
+# Update your local Helm chart repository cache
+helm repo update
+
+# Install the cert-manager Helm chart
+helm install cert-manager jetstack/cert-manager \
+  --namespace nginx-ingress-test \
+  --set installCRDs=false \
+  --set nodeSelector."kubernetes\.io/os"=linux 
+```
+### Create a CA cluster issuer
+Before certificates can be issued, cert-manager requires an Issuer or ClusterIssuer resource. These Kubernetes resources are identical in functionality, however Issuer works in a single namespace, and ClusterIssuer works across all namespaces. For more information, see the cert-manager issuer documentation.
+```
+kubectl apply -f cert-manager-tls-ingress.yaml --namespace nginx-ingress-test
 ```
