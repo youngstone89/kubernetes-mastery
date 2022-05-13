@@ -75,3 +75,26 @@ kubectl apply -f aks-helloworld-two.yaml --namespace nginx-ingress-test
 ```
 kubectl apply -f ingress.yaml --namespace nginx-ingress-test
 ```
+### Generate TLS certificates
+```
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -out aks-ingress-tls.crt \
+    -keyout aks-ingress-tls.key \
+    -subj "/CN=demo.azure.com/O=aks-ingress-tls"
+```
+### Create Kubernetes secret for the TLS certificate
+```
+kubectl create secret tls aks-ingress-tls \
+    --namespace nginx-ingress-test \
+    --key aks-ingress-tls.key \
+    --cert aks-ingress-tls.crt
+```
+
+```
+kubectl apply -f tls-ingress.yaml --namespace nginx-ingress-test
+```
+
+### Test the ingress configuration 
+```
+curl -v -k --resolve demo.azure.com:443:20.102.13.247 https://demo.azure.com
+```

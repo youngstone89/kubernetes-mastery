@@ -19,7 +19,7 @@ spec:
         - containerPort: 80
         env:
         - name: TITLE
-          value: "Welcome to Azure Kubernetes Service (AKS)"
+          value: "“If you don't like something, change it. If you can't change it,change your attitude. Don't complain.” - Maya Angelou"
 ---
 apiVersion: v1
 kind: Service
