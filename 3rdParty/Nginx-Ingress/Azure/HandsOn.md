@@ -63,3 +63,15 @@ helm install nginx-ingress-test ingress-nginx/ingress-nginx \
 
 ```
 https://docs.microsoft.com/en-us/azure/aks/ingress-basic?tabs=azure-cli
+
+### Run demo applications
+```
+kubectl apply -f aks-helloworld-one.yaml --namespace nginx-ingress-test
+kubectl apply -f aks-helloworld-two.yaml --namespace nginx-ingress-test
+
+```
+
+### Create an ingress route
+```
+kubectl apply -f ingress.yaml --namespace nginx-ingress-test
+```
