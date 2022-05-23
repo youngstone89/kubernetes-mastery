@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: krypton-router-ingress
+  name: krypton-eng-usa-ingress
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
@@ -20,6 +20,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-                name: krypton-router
-                port:
-                  number: 8090
+            name: krypton-eng-usa
+            port:
+              number: 8090

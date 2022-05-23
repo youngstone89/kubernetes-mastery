@@ -1,10 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: hello-world-ingress-with-letsencrypt
+  name: krypton-haproxy-grpc-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
     cert-manager.io/cluster-issuer: letsencrypt-asraas
@@ -18,10 +16,10 @@ spec:
   - host: nginx-asraas.eastus.cloudapp.azure.com
     http:
       paths:
-      - path: /(.*)
+      - path: /
         pathType: Prefix
         backend:
           service:
-            name: krypton-router
+            name: krypton-eng-usa-haproxy-grpc
             port:
-              number: 8090
+              number: 80
