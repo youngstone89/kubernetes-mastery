@@ -1,12 +1,13 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: hello-world-ingress-with-letsencrypt
   annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
-    cert-manager.io/cluster-issuer: letsencrypt
-  name: krypton-router-ingress
-  namespace: nuance-asraas
+    cert-manager.io/cluster-issuer: letsencrypt-asraas
 spec:
   ingressClassName: nginx-asraas
   tls:
@@ -17,7 +18,7 @@ spec:
   - host: nginx-asraas.eastus.cloudapp.azure.com
     http:
       paths:
-      - path: /
+      - path: /(.*)
         pathType: Prefix
         backend:
           service:

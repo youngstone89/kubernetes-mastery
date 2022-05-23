@@ -6,9 +6,9 @@ https://docs.microsoft.com/en-us/azure/aks/ingress-static-ip?tabs=azure-cli
 ```
 $ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 $ helm install nginx-ingress ingress-nginx/ingress-nginx \
-    --namespace ingress-basic --create-namespace \
-    --set controller.ingressClassResource.name=nginx-basic \
-    --set controller.ingressClassResource.controllerValue="example.com/ingress-nginx-basic" \
+    --namespace nuance-asraas  \
+    --set controller.ingressClassResource.name=nginx-asraas \
+    --set controller.ingressClassResource.controllerValue="nginx-asraas" \
     --set controller.ingressClassResource.enabled=true \
     --set controller.ingressClassByName=true
     --set controller.nodeSelector."kubernetes\.io/os"=linux \
@@ -51,15 +51,14 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
 ### Customized configuration
 https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx?modal=values&path=controller.ingressClassResource.name
 ```
-helm install nginx-ingress-test ingress-nginx/ingress-nginx \
---create-namespace \
---namespace nginx-ingress-test \
---set controller.ingressClassResource.name="nginx-ingress-test"
---set controller.ingressClass="nginx-ingress-test" \
+helm install nginx-asraas ingress-nginx/ingress-nginx \
+--namespace nuance-asraas \
+--set controller.ingressClassResource.name="nginx-asraas"
+--set controller.ingressClass="nginx-asraas" \
 --set controller.replicaCount=2 \
 --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
 --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
---set controller.service.annotations."service\.beta\.kubernetes\.io/azure-dns-label-name"="grpc-test"
+--set controller.service.annotations."service\.beta\.kubernetes\.io/azure-dns-label-name"="nginx-asraas"
 
 ```
 https://docs.microsoft.com/en-us/azure/aks/ingress-basic?tabs=azure-cli
@@ -120,22 +119,25 @@ az network public-ip show --ids $PUBLICIPID --query "[dnsSettings.fqdn]" --outpu
 ```
 #### Method 2: Set the DNS label using helm chart settings
 ```
-DNS_LABEL="grpc-test"
-helm upgrade nginx-ingress-test ingress-nginx/ingress-nginx \
-  --namespace nginx-ingress-test \
-  --set controller.ingressClassResource.name="nginx-ingress-test" \
-  --set controller.ingressClass="nginx-ingress-test" \
+DNS_LABEL="nginx-asraas"
+helm upgrade nginx-asraas ingress-nginx/ingress-nginx \
+  --namespace nuance-asraas \
+  --set controller.ingressClassResource.name="nginx-asraas" \
+  --set controller.ingressClass="nginx-asraas" \
   --set controller.service.annotations."service\.beta\.kubernetes\.io/azure-dns-label-name"=$DNS_LABEL
 
 ```
 ```
 grpc-test.eastus.cloudapp.azure.com.
 ```
+```
+nginx-asraas.eastus.cloudapp.azure.com.
+```
 
 ### Install cert-manager
 ```
-# Label the ingress-basic namespace to disable resource validation
-kubectl label namespace nginx-ingress-test cert-manager.io/disable-validation=true
+# Label the namespace to disable resource validation
+kubectl label namespace nuance-asraas cert-manager.io/disable-validation=true
 
 # Add the Jetstack Helm repository
 helm repo add jetstack https://charts.jetstack.io
@@ -145,16 +147,19 @@ helm repo update
 
 # Install the cert-manager Helm chart
 helm install cert-manager jetstack/cert-manager \
-  --namespace nginx-ingress-test \
+  --namespace nuance-asraas \
   --set installCRDs=false \
   --set nodeSelector."kubernetes\.io/os"=linux 
 ```
 ### Create a CA cluster issuer
 Before certificates can be issued, cert-manager requires an Issuer or ClusterIssuer resource. These Kubernetes resources are identical in functionality, however Issuer works in a single namespace, and ClusterIssuer works across all namespaces. For more information, see the cert-manager issuer documentation.
 ```
-kubectl apply -f cert-manager-tls-ingress.yaml --namespace nginx-ingress-test
+kubectl apply -f cert-manager-tls-ingress.yaml --namespace nuance-asraas
 ```
 ### Verify a certificate object has been created
 ```
 $ kubectl get certificate --namespace nginx-ingress-test
+```
+```
+$ kubectl get certificate --namespace nuance-asraas
 ```
