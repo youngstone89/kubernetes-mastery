@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: go-grpc-greeter-server-2nd
+  name: go-grpc-greeter-server-2nd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-grpc-greeter-server-2nd
+  template:
+    metadata:
+      labels:
+        app: go-grpc-greeter-server-2nd
+    spec:
+      containers:
+      - image: youngstone89/grpc-go   # Edit this for your reponame
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 50m
+            memory: 50Mi
+        name: go-grpc-greeter-server-2nd
+        ports:
+        - containerPort: 50051

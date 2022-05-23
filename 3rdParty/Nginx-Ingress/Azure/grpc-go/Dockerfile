@@ -1,10 +1,14 @@
 FROM golang:buster as build
 
-WORKDIR /go/src/greeter-server
+WORKDIR /go/src/grpc-go
 
-RUN curl -o main.go https://raw.githubusercontent.com/grpc/grpc-go/91e0aeb192456225adf27966d04ada4cf8599915/examples/features/reflection/server/main.go && \
-  go mod init greeter-server && \
+COPY src/main.go .
+RUN mkdir helloworld
+COPY src/helloworld helloworld
+
+RUN go mod init grpc-go && \
   go mod tidy && \
+  go mod vendor && \
   go build -o /greeter-server main.go
 
 FROM gcr.io/distroless/base-debian10

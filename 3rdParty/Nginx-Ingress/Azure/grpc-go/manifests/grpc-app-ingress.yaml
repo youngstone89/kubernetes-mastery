@@ -23,3 +23,17 @@ spec:
             name: go-grpc-greeter-server
             port:
               number: 80
+      - path: /helloworld.Greeter/SayHello
+        pathType: Prefix
+        backend:
+          service:
+            name: go-grpc-greeter-server
+            port:
+              number: 80
+      - path: /helloworld.Greeter/SayHelloAgain
+        pathType: Prefix
+        backend:
+          service:
+            name: go-grpc-greeter-server-2nd
+            port:
+              number: 80
