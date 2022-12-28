@@ -2086,19 +2086,13 @@ prometheus:
     ## ServiceMonitors to be selected for target discovery.
     ## If {}, select all ServiceMonitors
     ##
-    # serviceMonitorSelector: {}
+    serviceMonitorSelector: {}
     ## Example which selects ServiceMonitors with label "prometheus" set to "somelabel"
-    serviceMonitorSelector:
-      matchLabels:
-        app.kubernetes.io/part-of: kube-prometheus-stack
 
     ## Namespaces to be selected for ServiceMonitor discovery.
     ##
-    # serviceMonitorNamespaceSelector: {}
+    serviceMonitorNamespaceSelector: {}
     ## Example which selects ServiceMonitors in namespaces with label "prometheus" set to "somelabel"
-    serviceMonitorNamespaceSelector:
-      matchLabels:
-        prometheus: prometheus
 
     ## If true, a nil or {} value for prometheus.prometheusSpec.podMonitorSelector will cause the
     ## prometheus resource to be created with selectors based on values in the helm deployment,
