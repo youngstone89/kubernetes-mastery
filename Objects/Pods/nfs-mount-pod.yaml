@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: datapacks-nfs-pod
+spec:
+  containers:
+  - name: datapacks-nfs-container
+    image: nginx
+    volumeMounts:
+    - name: my-nfs-volume
+      mountPath: /mnt/my-nfs
+  volumes:
+  - name: my-nfs-volume
+    nfs:
+      server: 192.168.1.5
+      path: /mnt/nfs/var/nfs_share_dir/datapacks
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: eventlogs-nfs-pod
+spec:
+  containers:
+  - name: eventlogs-nfs-container
+    image: nginx
+    volumeMounts:
+    - name: my-nfs-volume
+      mountPath: /mnt/my-nfs
+  volumes:
+  - name: my-nfs-volume
+    nfs:
+      server: 192.168.1.5
+      path: /mnt/nfs/var/nfs_share_dir/event-logs
