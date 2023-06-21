@@ -1,1 +1,1 @@
-az aks addon update -g ps-xaas-stack-resource-group -n ps-laa-cluster -a azure-keyvault-secrets-provider --enable-secret-rotation --rotation-poll-interval 1m
+az aks addon update -g $RESOURCE_GROUP -n $CLUSTER -a azure-keyvault-secrets-provider --enable-secret-rotation --rotation-poll-interval 1m

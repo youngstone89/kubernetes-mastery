@@ -6,8 +6,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
+make: *** No rule to make target `all'.  Stop.
+ 
 
-# Make data base, printed on Tue May  2 11:22:00 2023
+# Make data base, printed on Thu Jun 22 06:32:33 2023
 
 # Variables
 
@@ -20,25 +23,29 @@ PROVIDE_FULLSTACK_ACTION = true
 # environment
 VSCODE_CRASH_REPORTER_PROCESS_TYPE = extensionHost
 # environment
-NVM_INC = /Users/yeongseokkim/.nvm/versions/node/v16.17.0/include/node
+NVM_INC = /Users/youngstone/.nvm/versions/node/v18.12.1/include/node
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
+# environment
+CPPFLAGS = -I/usr/local/opt/sqlite/include
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /Users/yeongseokkim/Workspace/kubernetes-mastery
+CURDIR := /Users/youngstone/Workspace/kubernetes-mastery
 # makefile
 SHELL = /bin/sh
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","osLocale":"en-kr","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
+# environment
+DATASTORE_TYPE = kubernetes
 # makefile
 MAKEFILE_LIST := 
 # environment
-DOCKER_USERNAME = yeongseok.kim
+KUBECONFIG = /Users/youngstone/.kube/config
 # environment
 FIG_SET_PARENT_CHECK = 1
 # environment
@@ -46,7 +53,7 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 VSCODE_CWD = /
 # environment
-PATH = /Users/yeongseokkim/.gem/ruby/2.7.0/bin:/Users/yeongseokkim/.rbenv/shims:/Users/yeongseokkim/.rbenv/bin:/usr/local/opt/python@3.8/libexec/bin:/Users/yeongseokkim/.krew/bin:/Users/yeongseokkim/.nvm/versions/node/v16.17.0/bin:/usr/local/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Users/yeongseokkim/.cargo/bin:/Users/yeongseokkim/.fig/bin:/Users/yeongseokkim/.local/bin:/Users/yeongseokkim/Workspace/macos-ncli:/Users/yeongseokkim/go/bin:/Users/yeongseokkim/development/flutter/bin/
+PATH = /usr/local/opt/go@1.17/bin:/usr/local/lib/ruby/gems/3.1.0/bin:/usr/local/opt/ruby/bin:/usr/local/opt/python@3.7/bin:/usr/local/opt/python@3.8/bin:/Users/youngstone/.nvm/versions/node/v18.12.1/bin:/usr/local/opt/sqlite/bin:/usr/local/opt/openssl@1.1/bin:/usr/local/bin:/usr/local/sbin:/usr/local/opt/ncurses/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Library/Apple/usr/bin:/Users/youngstone/.fig/bin:/Users/youngstone/.local/bin:/Users/youngstone/Flutter/flutter/bin
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
@@ -54,47 +61,47 @@ GOLANG_EXECUTABLE = go
 # environment
 THREE_SCALE_USER_TOKEN = 207c527cfc2a6b8dcf4fa43ad7a976da
 # environment
-NVM_BIN = /Users/yeongseokkim/.nvm/versions/node/v16.17.0/bin
+NVM_BIN = /Users/youngstone/.nvm/versions/node/v18.12.1/bin
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-KUBECONFIG = /Users/yeongseokkim/.kube/config:/Users/yeongseokkim/.kube/nuance-ps-lab.config
+LDFLAGS = -L/usr/local/opt/sqlite/lib
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-UUID = c0a7224b-7bfa-4fbc-822f-ad12609e5690
+UUID = d8270ece-473b-445f-b797-a9348538e979
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.fo1gzkxkCz/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.iyupBBz4Hz/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
 TTY = not a tty
 # environment
-FIG_PID = 4515
+FIG_PID = 50334
 # environment
-PWD = /Users/yeongseokkim/Workspace/kubernetes-mastery
+PWD = /Users/youngstone/Workspace/kubernetes-mastery
+# environment
+PKG_CONFIG_PATH = /usr/local/opt/sqlite/lib/pkgconfig
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
-MANPATH = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/share/man:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/usr/share/man:/Applications/Xcode.app/Contents/Developer/usr/share/man:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/share/man:
-# environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-HOME = /Users/yeongseokkim
+HOME = /Users/youngstone
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/yeongseokkim/Library/Application Support/Code/CachedData/704ed70d4fd1c6bd6342c436f1ede30d1cff4710
+VSCODE_CODE_CACHE_PATH = /Users/youngstone/Library/Application Support/Code/CachedData/b3e4e68a0bc097f0ae7907b217c1119af9e03435
 # environment
-LOGNAME = yeongseokkim
+LOGNAME = youngstone
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
 NVM_CD_FLAGS = -q
 # environment
-TELEMETRY_ID = 38db880b-04d0-4c84-850e-3c2336d51903
+TELEMETRY_ID = 5c013140-62a2-4f4c-8ceb-275d08aeaf64
 # environment
-ZSH = /Users/yeongseokkim/.oh-my-zsh
+ZSH = /Users/youngstone/.oh-my-zsh
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -106,25 +113,19 @@ MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
 # environment
-DOCKER_REGISTRY = registry.labs.nuance.com
-# environment
 SHLVL = 1
-# environment
-JAVA_HOME = /Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
 # environment
 VSCODE_CRASH_REPORTER_SANDBOXED_HINT = 1
 # default
 MAKE_VERSION := 3.81
 # environment
-USER = yeongseokkim
+USER = youngstone
 # makefile
 .DEFAULT_GOAL := 
 # environment
 LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
-# environment
-DOCKER_PASSWORD = dmsdndkQk2022**
 # default
 MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
 # environment
@@ -132,11 +133,11 @@ UTM_SOURCE = vscode
 # default
 .VARIABLES := 
 # environment
-TMPDIR = /var/folders/2c/k5j_pm597pqdjwvj8ytvr74h0000gn/T/
+TMPDIR = /var/folders/3v/c_xbzzk93pzf2fvc_1bd_r3c0000gn/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/yeongseokkim/Library/Application Support/Code/1.77-main.sock
+VSCODE_IPC_HOOK = /Users/youngstone/Library/Application Support/Code/1.78-main.sock
 # environment
 MallocNanoZone = 0
 # makefile
@@ -146,9 +147,9 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-NVM_DIR = /Users/yeongseokkim/.nvm
+NVM_DIR = /Users/youngstone/.nvm
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.312947684.312947690
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.12932484140.12932484146
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # environment
@@ -163,16 +164,12 @@ __CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
 COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
-# environment
-RBENV_SHELL = zsh
 # automatic
 <F = $(notdir $<)
 # environment
 PAGER = less
 # environment
 LC_ALL = C
-# environment
-JAVA_HOME_11 = /Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
 # automatic
 ^F = $(notdir $^)
 # default
@@ -182,13 +179,11 @@ SUFFIXES :=
 # environment
 MAKELEVEL := 0
 # environment
-GITLAB_TOKEN = ygVyByexd7UuLXPSxSiE
-# environment
 LANG = C
 # environment
-VSCODE_PID = 4504
+VSCODE_PID = 50327
 # variable set hash-table stats:
-# Load=88/1024=9%, Rehash=0, Collisions=4/109=4%
+# Load=84/1024=8%, Rehash=0, Collisions=3/105=3%
 
 # Pattern-specific Variable Values
 
@@ -196,9 +191,9 @@ VSCODE_PID = 4504
 
 # Directories
 
-# . (device 16777223, inode 1410259): 12 files, no impossibilities.
+# . (device 16777220, inode 12933344912): 11 files, no impossibilities.
 
-# 12 files, no impossibilities in 1 directories.
+# 11 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -270,8 +265,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Tue May  2 11:22:00 2023
+# Finished Make data base on Thu Jun 22 06:32:33 2023
 
- 
-make: *** No rule to make target `all'.  Stop.
  

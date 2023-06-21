@@ -1,21 +1,19 @@
 #!/usr/bin/env bash
 
-
-
-export subscriptionID=4ae36834-b6fb-4292-85b6-c2505f9d9f1f
-export resourceGroupName=ps-xaas-stack-resource-group
+export subscriptionID=$SUBSCRIPTION_ID
+export resourceGroupName=$RESOURCE_GROUP
 export UAMI=sscsid-identity
-export KEYVAULT_NAME=ps-xaas-keyvault
-export clusterName=ps-xaas-stack-cluster
+export KEYVAULT_NAME="<PLACE_HOLDER>"
+export clusterName="<PLACE_HOLDER>"
 
-az account set --subscription 4ae36834-b6fb-4292-85b6-c2505f9d9f1f
+az account set --subscription $SUBSCRIPTION_ID
 
 # create a managed identity
-az identity create --name sscsid-identity --resource-group ps-xaas-stack-resource-group
-export USER_ASSIGNED_CLIENT_ID="$(az identity show -g ps-xaas-stack-resource-group --name sscsid-identity --query 'clientId' -o tsv)"
-export IDENTITY_TENANT=$(az aks show --name ps-xaas-stack-cluster --resource-group ps-xaas-stack-resource-group --query aadProfile.tenantId -o tsv)
+az identity create --name sscsid-identity --resource-group $RESOURCE_GROUP
+export USER_ASSIGNED_CLIENT_ID="$(az identity show -g $RESOURCE_GROUP --name sscsid-identity --query 'clientId' -o tsv)"
+export IDENTITY_TENANT=$(az aks show --name ps-xaas-stack-cluster --resource-group $RESOURCE_GROUP --query aadProfile.tenantId -o tsv)
 
 # set an access policy that grants the workload identity permission to access the Keyh Vault secrets
-az keyvault set-policy -n ps-xaas-keyvault --key-permissions get --spn $USER_ASSIGNED_CLIENT_ID -g ps-xaas-stack-resource-group
-az keyvault set-policy -n ps-xaas-keyvault --secret-permissions get --spn $USER_ASSIGNED_CLIENT_ID -g ps-xaas-stack-resource-group
-az keyvault set-policy -n ps-xaas-keyvault --certificate-permissions get --spn $USER_ASSIGNED_CLIENT_ID -g ps-xaas-stack-resource-group
+az keyvault set-policy -n $KEYVAULT_NAME --key-permissions get --spn $USER_ASSIGNED_CLIENT_ID -g $RESOURCE_GROUP
+az keyvault set-policy -n $KEYVAULT_NAME --secret-permissions get --spn $USER_ASSIGNED_CLIENT_ID -g $RESOURCE_GROUP
+az keyvault set-policy -n $KEYVAULT_NAME --certificate-permissions get --spn $USER_ASSIGNED_CLIENT_ID -g $RESOURCE_GROUP

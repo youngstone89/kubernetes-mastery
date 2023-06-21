@@ -30,7 +30,7 @@ There are two open source ingress controllers for Kubernetes based on Nginx: One
 ### Configure ACR integration for existing AKS clusters
 ```
 # set this to the name of your Azure Container Registry.  It must be globally unique
-az aks update -n ps-xaas-stack-aks-cluster -g ps-xaas-stack-resource-group --attach-acr psXaasStackAcr
+az aks update -n $CLUSTER_NAME -g $RESOURCE_GROUP --attach-acr psXaasStackAcr
 ```
 
 ### Basic configuration

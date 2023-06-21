@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-az aks update -g ps-xaas-stack-resource-group -n ps-xaas-stack-aks-cluster --enable-oidc-issuer
+az aks update -g $RESOURCE_GROUP -n $CLUSTER_NAME --enable-oidc-issuer
